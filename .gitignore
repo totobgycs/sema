@@ -1,1 +1,3 @@
 env
+sema_proto/sema_proto/__pycache__/
+sema_proto/db.sqlite3

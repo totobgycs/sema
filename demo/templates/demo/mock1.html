@@ -1,0 +1,88 @@
+{% extends "demo/base.html" %}
+
+{% block content %}
+
+
+<div class="container bg-light shadow">
+  <h1>Comm platform - proof of concept</h1>
+  <p>This is a proof of concept for a multi-lingual communications platform. The goal is to demonstrate that automated machine translation is technically feasible... for translating short texts, in real time, between any two languages.
+  </p>
+  <p>For <a href="https://www.mukwegefoundation.org/sema/">SEMA</a>... from Hanna, with love.
+  </p>
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<p>
+    <strong>Status: Not yet ready</strong>
+    </p>
+		<hr>
+		<p>
+    The user interface is not functioning properly yet (buttons don't work).
+    The automated real time translation is not yet impemented.
+    List of languages is not final. (Just an example list of languages now... a few that I know).
+    </p>
+    <p>
+    2019-08-18
+    </p>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+  <br/>
+  <p/>
+</div>
+<div class="container bg-light shadow">
+<!------------------------------------------>
+  <div class="row border-bottom">
+		<div class="input-group m-3">
+		  <label for="dropdownLang" class="col-3 col-form-label">Choose your language</label>
+			<div class="col-3 dropdown">
+				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					English (English)
+				</a>
+
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					<a class="dropdown-item" href="#">Netherlands (Dutch)</a>
+					<a class="dropdown-item" href="#">Magyar (Hungarian)</a>
+					<a class="dropdown-item" href="#">Deutsch (German)</a>
+				</div>
+			</div>
+		</div>
+  </div>
+<!------------------------------------------>
+  <div class="row">
+		<table class="table table-borderless">
+			<tbody>
+				<tr>
+				  <td style="width: 10%">19:58</td>
+				  <td style="width: 70%">SEMA is the Global Network of Victims and Survivors to End Wartime Sexual Violence.</td>
+				  <td style="width: 20%">(originally posted in English)</td>
+				</tr>
+				<tr>
+				  <td>20:10</td>
+				  <td>SEMA literally means “Speak Out” in Swahili.</td>
+				  <td>(originally posted in English)</td>
+				</tr>
+				<tr>
+				  <td>20:21</td>
+				  <td>There are survivors of wartime rape from 21 countries in Africa, South America, the Middle East, and Europe represented in the SEMA network.</td>
+				  <td>(originally posted in English)</td>
+				</tr>
+			</tbody>
+		</table>
+  </div>
+<!------------------------------------------>
+	<div class="row border-top">
+    <div class="col-10">
+			<div class="input-group m-3">
+				<label for="inputPost" class="col-2 col-form-label">Say something</label>
+				<input type="text" class="form-control" placeholder="You are writing in English">
+			</div>
+    </div>
+    <div class="col-2">
+		<button class="btn btn-secondary col-auto m-3" type="button" id="inputPost">Post</button>
+    </div>
+	</div>
+<!------------------------------------------>
+</div>
+
+
+{% endblock %}

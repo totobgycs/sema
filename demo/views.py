@@ -11,24 +11,12 @@ def mock1(request):
 
 def index(request):
 
-  sample_messages = [
-    {
-      'timestamp':'19:58',
-      'translated_text':'SEMA is the Global Network of Victims and Survivors to End Wartime Sexual Violence.',
-      'note':'originally posted in English'
-     },
-    {
-      'timestamp':'20:10',
-      'translated_text':'SEMA literally means “Speak Out” in Swahili.',
-      'note': 'originally posted in English'
-    },
-    {
-      'timestamp':'20:12',
-      'translated_text':'There are survivors of wartime rape from 21 countries in Africa, South America, the Middle East, and Europe represented in the SEMA network.',
-      'note':'originally posted in English'
-      },
-    ]
+  
+  languages = Language.objects.all()[:10]
+  dlanguages = [lang.lang_native + ' (' + lang.lang_english + ')' for lang in languages]
+
   messages = Message.objects.all()
+
   dmessages = []
   for message in messages:
     dmessage = {}
@@ -39,5 +27,8 @@ def index(request):
   return render(
     request,
     'demo/index.html',
-    {'messages': dmessages})
+    {
+      'messages': dmessages,
+      'languages': dlanguages
+    })
 

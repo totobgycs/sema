@@ -41,9 +41,9 @@
 				</a>
 
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-					<a class="dropdown-item" href="#">Netherlands (Dutch)</a>
-					<a class="dropdown-item" href="#">Magyar (Hungarian)</a>
-					<a class="dropdown-item" href="#">Deutsch (German)</a>
+					{% for language in languages %}
+          <a class="dropdown-item" href="#">{{ language }}</a>
+          {% endfor %}
 				</div>
 			</div>
 		</div>

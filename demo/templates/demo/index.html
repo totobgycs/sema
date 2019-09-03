@@ -37,12 +37,12 @@
 		  <label for="dropdownLang" class="col-3 col-form-label">Choose your language</label>
 			<div class="col-3 dropdown">
 				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					English (English)
+					{{chosen_language.lang_native}} ({{chosen_language.lang_english}})
 				</a>
 
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 					{% for language in languages %}
-          <a class="dropdown-item" href="#">{{ language }}</a>
+          <a class="dropdown-item" href="{{language.lang_english}}">{{ language.lang_native}} ({{language.lang_english}})</a>
           {% endfor %}
 				</div>
 			</div>
@@ -56,8 +56,8 @@
 			<tbody>
         {% for message in messages %}
 				<tr>
-				  <td style="width: 10%">{{ message.timestamp }}</td>
-				  <td style="width: 70%">{{ message.translated_text }}</td>
+				  <td style="width: 20%">{{ message.timestamp }}</td>
+				  <td style="width: 60%">{{ message.translated_text }}</td>
 				  <td style="width: 20%">({{ message.note }})</td>
 				</tr>
         {% endfor %}
@@ -71,7 +71,7 @@
     <div class="col-10">
 			<div class="input-group m-3">
 				<label for="inputPost" class="col-2 col-form-label">Say something</label>
-				<input type="text" class="form-control" placeholder="You are writing in English">
+				<input type="text" class="form-control" placeholder="You are writing in {{chosen_language.lang_english}}">
 			</div>
     </div>
     <div class="col-2">

@@ -31,50 +31,65 @@
 </div>
 <div class="container bg-light shadow">
 <!------------------------------------------>
+
   <div class="row border-bottom">
 		<div class="input-group m-3">
 		  <label for="dropdownLang" class="col-3 col-form-label">Choose your language</label>
 			<div class="col-3 dropdown">
 				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					English (English)
+					{{chosen_language.lang_native}} ({{chosen_language.lang_english}})
 				</a>
 
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-					<a class="dropdown-item" href="#">Netherlands (Dutch)</a>
-					<a class="dropdown-item" href="#">Magyar (Hungarian)</a>
-					<a class="dropdown-item" href="#">Deutsch (German)</a>
+					{% for language in languages %}
+          <a class="dropdown-item" href="{{language.lang_english}}">{{ language.lang_native}} ({{language.lang_english}})</a>
+          {% endfor %}
 				</div>
 			</div>
 		</div>
   </div>
+
 <!------------------------------------------>
+
   <div class="row">
 		<table class="table table-borderless">
 			<tbody>
         {% for message in messages %}
 				<tr>
-				  <td style="width: 10%">{{ message.timestamp }}</td>
-				  <td style="width: 70%">{{ message.translated_text }}</td>
+				  <td style="width: 20%">{{ message.timestamp }}</td>
+				  <td style="width: 60%">{{ message.translated_text }}</td>
 				  <td style="width: 20%">({{ message.note }})</td>
 				</tr>
         {% endfor %}
 			</tbody>
 		</table>
   </div>
+
 <!------------------------------------------>
+
 	<div class="row border-top">
     <div class="col-10">
 			<div class="input-group m-3">
 				<label for="inputPost" class="col-2 col-form-label">Say something</label>
-				<input type="text" class="form-control" placeholder="You are writing in English">
+				<input type="text" class="form-control" placeholder="You are writing in {{chosen_language.lang_english}}">
 			</div>
     </div>
     <div class="col-2">
 		<button class="btn btn-secondary col-auto m-3" type="button" id="inputPost">Post</button>
     </div>
 	</div>
+
 <!------------------------------------------>
+
 </div>
 
-
 {% endblock %}
+
+
+{% block afterbody%}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+{% endblock%}

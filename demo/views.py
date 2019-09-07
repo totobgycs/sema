@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 
-from demo.models import *
+from demo.models import Language, Message
 
 def mock1(request):
   return render(
@@ -17,7 +17,7 @@ def language(request, label):
   try:
     language = Language.objects.get(lang_english=label)
   except Language.DoesNotExist:
-    language = Language.objects.get(lang_english='English')
+    language, _ = Language.objects.get_or_create(lang_english='English', defaults={'lang_native': 'English'})
 
   languages = Language.objects.all()[:10]
 

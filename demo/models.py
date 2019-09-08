@@ -5,6 +5,8 @@ class Language(models.Model):
     lang_native = models.CharField(max_length=30, unique=True)
     # the language name in English, e.g. 'Hungarian'
     lang_english = models.CharField(max_length=30, unique=True)
+    # ISO 639-1 code of teh language
+    lang_iso = models.CharField(max_length=2, unique=True, default='en')
     
     def __str__(self):
         return 'Language: '+self.lang_english

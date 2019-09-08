@@ -3,10 +3,10 @@
 from django.db import migrations
 from iso639 import languages
 
-def get_is639(apps, schema_editor):
+def get_iso639(apps, schema_editor):
     MyModel = apps.get_model('demo', 'language')
     for row in MyModel.objects.all():
-        row.Lang_iso = languages.get(name=row.lang_english)
+        row.lang_iso = languages.get(name=row.lang_english).part1
         row.save(update_fields=['lang_iso'])
 
 class Migration(migrations.Migration):
@@ -16,5 +16,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(get_is639, reverse_code=migrations.RunPython.noop)
+        migrations.RunPython(get_iso639, reverse_code=migrations.RunPython.noop)
     ]

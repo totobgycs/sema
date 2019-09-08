@@ -7,6 +7,9 @@ def get_translated_message (message, target_languge):
     # Instantiates a client
     translate_client = translate.Client()
 
+    if message.lang_native.lang_iso == target_languge.lang_iso:
+        return message.text_native
+
     # Translate text
     try:
         translation = translate_client.translate(
@@ -14,7 +17,7 @@ def get_translated_message (message, target_languge):
             source_language=message.lang_native.lang_iso,
             target_language=target_languge.lang_iso)['translatedText']
     except:
-        translation = 'Transaltion error.'
+        translation = 'Transaltion error from {} to {}.'.format(message.lang_native.lang_iso, target_languge.lang_iso)
     
     return translation
 

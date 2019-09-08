@@ -126,8 +126,8 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
-key = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS_JSON', True)
-keyPath = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS', True)
-f = open(keyPath, 'w')
-f.write(key)
-f.close()
+# Writing API key to file....
+if 'GOOGLE_APPLICATION_CREDENTIALS_JSON' in os.environ:
+    f = open(os.environ.get('GOOGLE_APPLICATION_CREDENTIALS', ''), 'w')
+    f.write(os.environ.get('GOOGLE_APPLICATION_CREDENTIALS_JSON', ''))
+    f.close()

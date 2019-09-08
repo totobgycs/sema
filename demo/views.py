@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 
 from demo.models import Language, Message
+from demo.services import *
 
 def mock1(request):
   return render(

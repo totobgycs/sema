@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 
-from demo.models import Language, Message
-from demo.services import *
+from demo.models import *
+from demo import services
 
 def mock1(request):
   return render(
@@ -28,7 +28,7 @@ def language(request, label):
   for message in messages:
     dmessage = {}
     dmessage['timestamp'] = message.timestamp
-    dmessage['translated_text'] = message.text_native
+    dmessage['translated_text'] = services.get_translated_message(message, language) 
     dmessage['note'] = "Original message (translation pending)"
     dmessages.append(dmessage) 
   return render(

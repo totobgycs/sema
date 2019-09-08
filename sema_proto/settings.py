@@ -125,3 +125,9 @@ django_heroku.settings(locals())
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+
+# Writing API key to file....
+if 'GOOGLE_APPLICATION_CREDENTIALS_JSON' in os.environ:
+    f = open(os.environ.get('GOOGLE_APPLICATION_CREDENTIALS', ''), 'w')
+    f.write(os.environ.get('GOOGLE_APPLICATION_CREDENTIALS_JSON', ''))
+    f.close()

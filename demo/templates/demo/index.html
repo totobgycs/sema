@@ -7,7 +7,7 @@
   <h1>Comm platform - proof of concept</h1>
   <p>This is a proof of concept for a multi-lingual communications platform. The goal is to demonstrate that automated machine translation is technically feasible... for translating short texts, in real time, between any two languages.
   </p>
-  <p>For <a href="https://www.mukwegefoundation.org/sema/">SEMA</a>... from Hanna, with love.
+  <p>For <a href="https://www.mukwegefoundation.org/sema/">SEMA</a>, from Hanna, with love.
   </p>
 	<div class="alert alert-warning alert-dismissible fade show" role="alert">
 		<p>
@@ -15,12 +15,14 @@
     </p>
 		<hr>
 		<p>
-    The user interface is not functioning properly yet (buttons don't work).
-    The automated real time translation is not yet impemented.
-    List of languages is not final. (Just an example list of languages now... a few that I know).
+    The user interface is not fully functioning yet (posting does not work).
+    <br>
+    The automated real time translation should work.
+    <br>
+    List of languages is not final (... just an example list of languages now... a few that I know).
     </p>
     <p>
-    2019-08-18
+    2019-09-08
     </p>
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		  <span aria-hidden="true">&times;</span>
@@ -56,9 +58,9 @@
 			<tbody>
         {% for message in messages %}
 				<tr>
-				  <td style="width: 20%">{{ message.timestamp }}</td>
-				  <td style="width: 60%">{{ message.translated_text }}</td>
-				  <td style="width: 20%">{{ message.note }}</td>
+				  <td style="color: grey">{{ message.timestamp }}</td>
+				  <td class="">{{ message.translated_text }}</td>
+				  <td style="color: grey;">Originally written in {{ message.note }}</td>
 				</tr>
         {% endfor %}
 			</tbody>

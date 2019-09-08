@@ -7,7 +7,7 @@ def get_is639(apps, schema_editor):
     MyModel = apps.get_model('demo', 'language')
     for row in MyModel.objects.all():
         row.Lang_iso = languages.get(name=row.lang_english)
-        row.save(update_fields=['Lang_iso'])
+        row.save(update_fields=['lang_iso'])
 
 class Migration(migrations.Migration):
 

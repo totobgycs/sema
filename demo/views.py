@@ -17,7 +17,7 @@ def language(request, label):
   try:
     language = Language.objects.get(lang_english=label)
   except Language.DoesNotExist:
-    language, _ = Language.objects.get_or_create(lang_english='English', defaults={'lang_native': 'English'})
+    language, _ = Language.objects.get_or_create(lang_english='English', defaults={'lang_native': 'English', 'lang_iso': 'en'})
 
   languages = Language.objects.all()[:10]
 

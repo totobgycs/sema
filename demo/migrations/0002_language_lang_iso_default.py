@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='language',
             name='lang_iso',
-            field=models.CharField(default='en', max_length=2, defult='en'),
+            field=models.CharField(default='en', max_length=2, default='en'),
         ),
     ]

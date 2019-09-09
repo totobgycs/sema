@@ -24,3 +24,7 @@ class Message(models.Model):
 class Translation(models.Model):
     message = models.ForeignKey(Message, on_delete=models.PROTECT)
     lang_target = models.ForeignKey(Language, on_delete=models.PROTECT)
+    text_translated = models.CharField(max_length=200)
+
+    class Meta:
+        unique_together = ('message', 'lang_target')

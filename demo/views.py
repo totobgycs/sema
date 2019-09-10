@@ -28,7 +28,7 @@ def language(request, label):
   for message in messages:
     dmessage = {}
     dmessage['timestamp'] = message.timestamp
-    dmessage['translated_text'] = services.get_translated_message(message, language) 
+    dmessage['translated_text'] = Translation.get_translated_message(message, language) 
     dmessage['note'] = message.lang_native.lang_english
     dmessages.append(dmessage) 
   return render(

@@ -44,7 +44,7 @@
 
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 					{% for language in languages %}
-          <a class="dropdown-item" href="{{language.lang_english}}">{{ language.lang_native}} ({{language.lang_english}})</a>
+          <a class="dropdown-item" href="{% url 'language' language.lang_english %}">{{ language.lang_native}} ({{language.lang_english}})</a>
           {% endfor %}
 				</div>
 			</div>
@@ -60,7 +60,7 @@
 				<tr>
 				  <td style="color: grey">{{ message.timestamp }}</td>
 				  <td class="">{{ message.translated_text }}</td>
-				  <td style="color: grey;">Originally written in {{ message.note }}</td>
+				  <td style="color: grey;">{{ message.note }}</td>
 				</tr>
         {% endfor %}
 			</tbody>
@@ -69,17 +69,20 @@
 
 <!------------------------------------------>
 
-	<div class="row border-top">
-    <div class="col-10">
-			<div class="input-group m-3">
-				<label for="inputPost" class="col-2 col-form-label">Say something</label>
-				<input type="text" class="form-control" placeholder="You are writing in {{chosen_language.lang_english}}">
-			</div>
-    </div>
-    <div class="col-2">
-		<button class="btn btn-secondary col-auto m-3" type="button" id="inputPost">Post</button>
-    </div>
-	</div>
+  <div class="row border-top">
+
+    <form class="form-inline" action="{% url 'postmessage' chosen_language.lang_english %}" method="post">
+      <div class="form-group m-3">
+        {% csrf_token %}
+        <label for="message_text">Say something</label>
+      </div>
+      <div class="form-group m-3">
+        <input type="text" class="form-control" id="message_text" name="message_text" placeholder="You are writing in {{chosen_language.lang_english}}">
+      </div>
+      <input class="btn btn-secondary m-3" type="submit" value="Post">
+
+    </form>
+  </div>
 
 <!------------------------------------------>
 

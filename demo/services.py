@@ -1,23 +1,22 @@
 from google.cloud import translate
 
-from demo.models import *
+ 
+def get_google_translation(source_language, target_language, text):
 
-def get_translated_message (message, target_languge):
+    if source_language == target_language:
+        return text
 
     # Instantiates a client
     translate_client = translate.Client()
 
-    if message.lang_native.lang_iso == target_languge.lang_iso:
-        return message.text_native
-
     # Translate text
     try:
         translation = translate_client.translate(
-            message.text_native,
-            source_language=message.lang_native.lang_iso,
-            target_language=target_languge.lang_iso)['translatedText']
+            text,
+            source_language=source_language,
+            target_language=target_language)['translatedText']
     except:
-        translation = 'Transaltion error from {} to {}.'.format(message.lang_native.lang_iso, target_languge.lang_iso)
+        translation = 'Transaltion error from {} to {}.'.format(source_language, target_language)
     
     return translation
 

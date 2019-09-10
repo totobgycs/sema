@@ -36,7 +36,7 @@ def view_language(request, label):
     dmessage = {}
     dmessage['timestamp'] = message.timestamp
     if enable_translation:
-      dmessage['translated_text'] = services.get_translated_message(message, language)
+      dmessage['translated_text'] = Translation.get_translated_message(message, language) 
       dmessage['note'] = "Originally written in "+message.lang_native.lang_english
     else:
       dmessage['translated_text'] = message.text_native

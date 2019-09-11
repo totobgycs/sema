@@ -16,7 +16,7 @@ class Language(models.Model):
 
 class Message(models.Model):
     timestamp = models.DateTimeField()
-    text_native = models.CharField(max_length=200)
+    text_native = models.TextField()
     lang_native = models.ForeignKey(Language, on_delete=models.PROTECT)
     
     def __str__(self):
@@ -26,7 +26,7 @@ class Message(models.Model):
 class Translation(models.Model):
     message = models.ForeignKey(Message, on_delete=models.PROTECT)
     lang_target = models.ForeignKey(Language, on_delete=models.PROTECT)
-    text_translated = models.CharField(max_length=200)
+    text_translated = models.TextField()
 
     class Meta:
         unique_together = ('message', 'lang_target')

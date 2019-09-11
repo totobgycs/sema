@@ -7,22 +7,19 @@
   <h1>Comm platform - proof of concept</h1>
   <p>This is a proof of concept for a multi-lingual communications platform. The goal is to demonstrate that automated machine translation is technically feasible... for translating short texts, in real time, between any two languages.
   </p>
-  <p>For <a href="https://www.mukwegefoundation.org/sema/">SEMA</a>, from Hanna, with love.
+  <p>For <a href="https://www.mukwegefoundation.org/sema/">SEMA</a>, from Hanna & Toto, with love.
   </p>
 	<div class="alert alert-warning alert-dismissible fade show" role="alert">
 		<p>
-    <strong>Status: Not yet ready</strong>
+    <strong>Ready for testing!</strong>
     </p>
-		<hr>
 		<p>
-    The user interface is not fully functioning yet (posting does not work).
+    List of languages is not final (I can add more languages, just ask).
     <br>
-    The automated real time translation should work.
-    <br>
-    List of languages is not final (... just an example list of languages now... a few that I know).
+    Please, only use small pieces of text (<200 characters).
     </p>
     <p>
-    2019-09-08
+    2019-09-11
     </p>
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		  <span aria-hidden="true">&times;</span>
@@ -34,14 +31,15 @@
 <div class="container bg-light shadow">
 <!------------------------------------------>
 
-  <div class="row border-bottom">
-		<div class="input-group m-3">
-		  <label for="dropdownLang" class="col-3 col-form-label">Choose your language</label>
-			<div class="col-3 dropdown">
+  <!-- The language selection area -->
+
+  <div class="row border-bottom m-2">
+		<div class="input-group my-2">
+		  <label for="dropdownLang" class="col-4 col-form-label">Choose your language</label>
+			<div class="dropdown col-4">
 				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					{{chosen_language.lang_native}} ({{chosen_language.lang_english}})
 				</a>
-
 				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 					{% for language in languages %}
           <a class="dropdown-item" href="{% url 'language' language.lang_english %}">{{ language.lang_native}} ({{language.lang_english}})</a>
@@ -51,23 +49,17 @@
 		</div>
   </div>
 
-<!------------------------------------------>
+  <!-- The most recent messages -->
 
-  <div class="row">
-		<table class="table table-borderless">
-			<tbody>
-        {% for message in messages %}
-				<tr>
-				  <td style="color: grey">{{ message.timestamp }}</td>
-				  <td class="">{{ message.translated_text }}</td>
-				  <td style="color: grey;">{{ message.note }}</td>
-				</tr>
-        {% endfor %}
-			</tbody>
-		</table>
+  {% for message in messages %}
+  <div class="row m-2">
+    <div class="col-md-2 col-sm-6" style="color: grey">{{ message.timestamp }}</div>
+    <div class="col-md-8 col-sm-12">{{ message.translated_text }}</div>
+    <div class="col-md-2 col-sm-6" style="color: grey;">{{ message.note }}</div>
   </div>
+  {% endfor %}
 
-<!------------------------------------------>
+  <!--The posting are -->
 
   <div class="row m-2">
     <form class="w-100" action="{% url 'postmessage' chosen_language.lang_english %}" method="post">

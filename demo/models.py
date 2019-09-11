@@ -1,4 +1,6 @@
 from django.db import models
+from google.cloud import translate
+from demo.services import *
 
 class Language(models.Model):
     # the language name in the original language, e.g. 'Magyar'
@@ -24,3 +26,26 @@ class Message(models.Model):
 class Translation(models.Model):
     message = models.ForeignKey(Message, on_delete=models.PROTECT)
     lang_target = models.ForeignKey(Language, on_delete=models.PROTECT)
+    text_translated = models.CharField(max_length=200)
+
+    class Meta:
+        unique_together = ('message', 'lang_target')
+
+
+    @classmethod
+    def get_translated_message (translation, message, target_language):
+
+        if message.lang_native.lang_iso == target_language.lang_iso:
+            return message.text_native
+
+        translation, _ = translation.objects.get_or_create(
+            message = message,
+            lang_target = target_language,
+            defaults = {'text_translated': lambda : get_google_translation(
+                source_language = message.lang_native.lang_iso,
+                target_language = target_language.lang_iso,
+                text = message.text_native
+            )})
+    
+        return translation.text_translated
+

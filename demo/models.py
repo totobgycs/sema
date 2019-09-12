@@ -24,7 +24,7 @@ class Message(models.Model):
 
 
 class Translation(models.Model):
-    message = models.ForeignKey(Message, on_delete=models.PROTECT)
+    message = models.ForeignKey(Message, on_delete=models.CASCADE)
     lang_target = models.ForeignKey(Language, on_delete=models.PROTECT)
     text_translated = models.TextField()
 

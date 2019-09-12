@@ -29,10 +29,10 @@ def view_language(request, label):
 
   languages = Language.objects.all()[:20]
 
-  messages = Message.objects.all()[:10]
+  messages = Message.objects.all().order_by('-timestamp')[:10]
 
   dmessages = []
-  for message in messages:
+  for message in reversed(messages):
     dmessage = {}
     dmessage['timestamp'] = message.timestamp
     if enable_translation:

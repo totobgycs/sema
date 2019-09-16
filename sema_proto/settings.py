@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import django_heroku
+from django.utils.crypto import get_random_string
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,11 +22,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '4j^y23j&5h(#nj4ju7sb2pl94jb&x9a&of3to@-v&g_hvfx-)d'
+# This is controlled by the django_heroku module
+chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
+SECRET_KEY = os.environ.get('SECRET_KEY', get_random_string(50, chars))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', True)
 
+# This is controlled by the django_heroku module
 ALLOWED_HOSTS = ['*']
 
 
@@ -75,7 +79,7 @@ WSGI_APPLICATION = 'sema_proto.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
+# This is controlled by the django_heroku module
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
